@@ -1,0 +1,12 @@
+{
+    "name": "zloykolobok/unisender",
+    "description": "Work with unisender via API",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Roman Nikolaenkov",
+            "email": "rnikolaenkov@yandex.ru"
+        }
+    ],
+    "require": {}
+}
