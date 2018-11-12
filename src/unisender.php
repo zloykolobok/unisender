@@ -53,11 +53,41 @@ class Unisender
         }
     }
 
-    public function send($data,$method)
+    protected function getTimeout()
+    {
+        return $this->timeout;
+    }
+
+    protected function send($data,$method)
     {
         $this->checkKey();
         $this->checkLang();
 
-        $url = $this->url.'/'.$this->lang.'/api/'.$method.'?format=json&api_key='.$this->key;
+        $url = $this->url.'/'.$this->lang.'/api/'.$method.'?format=json';
+
+        $array = $data;
+        $array['api_key'] = $this->getKey();
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $array);
+        curl_setopt($ch, CURLOPT_TIMEOUT, $this->getTimeout());
+        curl_setopt($ch, CURLOPT_URL, $url);
+        $res = curl_exec($ch);
+
+        if ($res) {
+            $jsonObj = json_decode($res);
+            if(null===$jsonObj) {
+                throw new UnisenderException("Invalid JSON");
+            } elseif(!empty($jsonObj->error)) {
+                throw new UnisenderException("An error occured: " . $jsonObj->error . "(code: " . $jsonObj->code . ")");
+            } else {
+                return $res;
+            }
+
+        } else {
+            throw new UnisenderException('API error');
+        }
     }
 }
