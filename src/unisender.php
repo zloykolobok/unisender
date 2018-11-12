@@ -32,7 +32,7 @@ class Unisender
     protected function checkKey()
     {
         if($this->key == null or $this->key == ''){
-            throw new UnisenderException('No key for unisender')
+            throw new UnisenderException('No key for unisender');
         }
     }
 
@@ -49,7 +49,7 @@ class Unisender
     protected function checkLang()
     {
         if($this->lang == null or $this->lang == ''){
-            throw new UnisenderException('No lang for unisender')
+            throw new UnisenderException('No lang for unisender');
         }
     }
 
