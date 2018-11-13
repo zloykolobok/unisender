@@ -21,7 +21,6 @@ class Contacts extends Unisender
         $data = [];
 
         $res = $this->send($data, $method);
-
         return $res;
     }
 
@@ -41,7 +40,6 @@ class Contacts extends Unisender
         $data['after_subscribe_url'] = $after_subscribe_url;
 
         $res = $this->send($data, $method);
-
         return $res;
     }
 
@@ -64,7 +62,6 @@ class Contacts extends Unisender
         $data['after_subscribe_url'] = $after_subscribe_url;
 
         $res = $this->send($data, $method);
-
         return $res;
     }
 
@@ -84,6 +81,7 @@ class Contacts extends Unisender
         $data['list_id'] = $id;
 
         $res = $this->send($data, $method);
+        return $res;
     }
 
     /**
@@ -121,12 +119,17 @@ class Contacts extends Unisender
         $method = 'subscribe';
 
         $data['list_ids'] = $list_ids;
-        $data['fields'] = $fields;
+
+        foreach($fields as $key=>$val){
+            $data['fields['.$key.']'] = $val;
+        }
+
         $data['tags'] = $tags;
-        $data['double_optin'] = $$double_optin;
-        $data['overwrite'] = $$double_optin;
+        $data['double_optin'] = $double_optin;
+        $data['overwrite'] = $overwrite;
 
         $res = $this->send($data, $method);
+        return $res;
     }
 
     /**
@@ -148,6 +151,7 @@ class Contacts extends Unisender
         $data['list_ids'] = $list_ids;
 
         $res = $this->send($data, $method);
+        return $res;
     }
 
     /**
@@ -170,6 +174,7 @@ class Contacts extends Unisender
         $data['list_ids'] = $list_ids;
 
         $res = $this->send($data, $method);
+        return $res;
     }
 
     /**
@@ -177,6 +182,8 @@ class Contacts extends Unisender
      * Может использоваться также для периодической синхронизации с базой контактов,
      * хранящейся на вашем собственном сервере
      * Импортировать можно данные не более 500 контактов за вызов.
+     * Пример импорта:
+     * $unisender->importContacts(['email'],[['test_1@mail.ru'],['test_2@mail.ru']]);
      *
      * @param array $field_names - Массив названий столбцов данных.
      * Обязательно должно присутствовать хотя бы поле «email» или «phone». См. https://www.unisender.com/ru/support/api/contacts/importcontacts/
@@ -191,12 +198,21 @@ class Contacts extends Unisender
     {
         $method = 'importContacts';
 
-        $data['field_names'] = $field_names;
-        $data['data'] = $contacts;
+        foreach ($field_names as $key => $value) {
+            $data['field_names['.$key.']'] = $value;
+        }
+
+        foreach($contacts as $key=>$val){
+            foreach($val as $k=>$v){
+                $data['data['.$key.']['.$k.']'] = $v;
+            }
+        }
+
         $data['overwrite_tags'] = $overwrite_tags;
         $data['overwrite_lists'] = $overwrite_tags;
 
         $res = $this->send($data, $method);
+        return $res;
     }
 
     /**
@@ -260,6 +276,7 @@ class Contacts extends Unisender
         $data['offset'] = $offset;
 
         $res = $this->send($data, $method);
+        return $res;
     }
 
     /**
@@ -275,6 +292,7 @@ class Contacts extends Unisender
         $data['login'] = $login;
 
         $res = $this->send($data, $method);
+        return $res;
     }
 
     /**
@@ -292,8 +310,11 @@ class Contacts extends Unisender
         $method = 'getContactCount';
 
         $data['list_id'] = $list_id;
-        $data['params'] = $params;
+        foreach ($params as $key => $val) {
+            $data['params['.$key.']'] = $val;
+        }
 
         $res = $this->send($data, $method);
+        return $res;
     }
 }
