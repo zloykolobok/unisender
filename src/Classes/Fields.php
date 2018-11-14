@@ -78,4 +78,20 @@ class Fields extends Unisender
         $res = $this->send($data, $method);
         return $res;
     }
+
+    /**
+     * Метод для удаления пользовательского поля.
+     *
+     * @param integer $id - ID поля
+     * @return void
+     */
+    public function deleteField(int $id)
+    {
+        $method = 'deleteField';
+
+        $data['id'] = $id;
+
+        $res = $this->send($data, $method);
+        return $res;
+    }
 }
