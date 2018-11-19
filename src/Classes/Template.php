@@ -204,4 +204,48 @@ class Template extends Unisender
         return $res;
     }
 
+    /**
+     * Данный метод используется для получения списка всех шаблонов
+     *
+     * @param string $type - Тип шаблона, принимает значения: system|user;
+     * @param string $date_from - Дата и время создания шаблона, начиная с которой нужно выводить шаблоны,
+     * в формате «ГГГГ-ММ-ДД чч:мм», часовой пояс UTC.
+     * @param string $date_to - Дата и время создания шаблона, заканчивая которой нужно выводить шаблоны,
+     *  в формате «ГГГГ-ММ-ДД чч:мм», часовой пояс UTC.
+     * @param string $format - Формат вывода возвращаемого результата. Может принимать значения html | json
+     * @param integer $limit - Количество записей в ответе на один запрос должно быть целым числом
+     * в диапазоне 1 — 100 , по умолчанию стоит 50 записей.
+     * @param integer $offset - Параметр указывает, с какой позиции начинать выборку.
+     * Значение должно быть 0, или больше (позиция первой записи начинается с 0), по умолчанию 0.
+     * @return void
+     */
+    public function getTemplates(
+        string $type = 'user',
+        string $date_from = '',
+        string $date_to = '',
+        string $format = 'json',
+        int $limit = 50,
+        int $offset = 0
+    )
+    {
+        $method = 'getTemplates';
+
+        $data['type'] = $type;
+
+        if($data['date_from'] != ''){
+            $data['date_from'] = $date_from;
+        }
+
+        if($data['date_to'] != ''){
+            $data['date_to'] = $date_to;
+        }
+
+        $data['format'] = $format;
+        $data['limit'] = $limit;
+        $data['offset'] = $offset;
+
+        $res = $this->send($data, $method);
+        return $res;
+    }
+
 }
