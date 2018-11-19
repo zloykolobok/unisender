@@ -74,4 +74,102 @@ class Template extends Unisender
         return $res;
     }
 
+    /**
+     * Метод для редактирования шаблона email письма для массовой рассылки
+     *
+     * @param integer $template_id - Идентификатор шаблона,
+     * @param string $title - Название шаблона
+     * @param string $sender_name - Имя отправителя. Произвольная строка, не совпадающая с email адресом
+     * @param string $sender_email - Email адрес отправителя.
+     * @param string $subject - Строка с темой письма. Может включать поля подстановки.
+     * @param string $body - Текст шаблона письма в формате HTML с возможностью добавлять поля подстановки.
+     * @param string $description - Текстовое описание шаблона
+     * @param string $list_id - Код списка, для которого по умолчанию создается шаблон.
+     * @param string $text_body - Текстовый вариант шаблона письма.
+     * @param string $segment_id - Код сегмента, для которого создается шаблон.
+     * @param string $tag - Метка. Если задана, то отправка рассылки письма из шаблона будет
+     * производиться не по всему списку, а только по тем адресатам, которым присвоена заданная метка.
+     * @param string $lang - Двухбуквенный код языка для автоматически добавляемой в каждое письмо строки со ссылкой отписки.
+     * @param string $message_format - Определяет способ создания шаблона:
+     * «block» — блочный редактор,
+     * «raw_html» — html редактор,
+     * text — текст.
+     * @return void
+     */
+    public function updateEmailTemplate(
+        int $template_id,
+        string $title = '',
+        string $sender_name = '',
+        string $sender_email = '',
+        string $subject = '',
+        string $body = '',
+        string $description = '',
+        string $list_id = '',
+        string $text_body = '',
+        string $segment_id = '',
+        string $tag = '',
+        string $lang = 'ru',
+        string $message_format = 'raw_htm',
+        string $raw_body = ''
+    )
+    {
+        $method = 'updateEmailTemplate';
+        $data['template_id'] = $template_id;
+
+        if($data['title'] != ''){
+            $data['title'] = $title;
+        }
+
+        if($data['sender_name'] != ''){
+            $data['sender_name'] = $sender_name;
+        }
+
+        if($data['sender_email'] != ''){
+            $data['sender_email'] = $sender_email;
+        }
+
+        if($data['subject'] != ''){
+            $data['subject'] = $subject;
+        }
+
+        if($data['body'] != ''){
+            $data['body'] = $body;
+        }
+
+        if($data['description'] != ''){
+            $data['description'] = $description;
+        }
+
+        if($data['list_id'] != ''){
+            $data['list_id'] = $list_id;
+        }
+
+        if($data['text_body'] != ''){
+            $data['text_body'] = $text_body;
+        }
+
+        if($data['segment_id'] != ''){
+            $data['segment_id'] = $segment_id;
+        }
+
+        if($data['tag'] != ''){
+            $data['tag'] = $tag;
+        }
+
+        if($data['lang'] != ''){
+            $data['lang'] = $lang;
+        }
+
+        if($data['message_format'] != ''){
+            $data['message_format'] = $message_format;
+        }
+
+        if($data['raw_body'] != ''){
+            $data['raw_body'] = $raw_body;
+        }
+
+        $res = $this->send($data, $method);
+        return $res;
+    }
+
 }
