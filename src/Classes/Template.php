@@ -172,4 +172,13 @@ class Template extends Unisender
         return $res;
     }
 
+    public function deleteTemplate(int $template_id )
+    {
+        $method = 'deleteTemplate';
+        $data['template_id'] = $template_id;
+
+        $res = $this->send($data, $method);
+        return $res;
+    }
+
 }
