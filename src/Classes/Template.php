@@ -172,10 +172,33 @@ class Template extends Unisender
         return $res;
     }
 
+    /**
+     * Метод для удаления шаблона.
+     *
+     * @param integer $template_id - Код шаблона
+     * @return void
+     */
     public function deleteTemplate(int $template_id )
     {
         $method = 'deleteTemplate';
         $data['template_id'] = $template_id;
+
+        $res = $this->send($data, $method);
+        return $res;
+    }
+
+    /**
+     * Метод возвращает информацию о заданном шаблоне.
+     *
+     * @param integer $template_id - ID шаблона.
+     * @param string $format - Формат вывода возвращаемого результата. Может принимать значения html | json
+     * @return void
+     */
+    public function getTemplate(int $template_id, string $format = 'json')
+    {
+        $method = 'getTemplate';
+        $data['template_id'] = $template_id;
+        $data['format'] = $format;
 
         $res = $this->send($data, $method);
         return $res;
