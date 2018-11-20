@@ -35,4 +35,19 @@ class Campaign extends Unisender
         $res = $this->send($data, $method);
         return $res;
     }
+
+    /**
+     * Получить общие сведения о результатах доставки сообщений в заданной рассылке.
+     *
+     * @param integer $campaign_id - Идентификатор кампании
+     * @return void
+     */
+    public function getCampaignCommonStats(int $campaign_id)
+    {
+        $method = 'getCampaignCommonStats';
+        $data['campaign_id '] = $campaign_id;
+
+        $res = $this->send($data, $method);
+        return $res;
+    }
 }
