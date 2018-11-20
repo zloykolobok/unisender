@@ -107,4 +107,19 @@ class Campaign extends Unisender
         $res = $this->send($data, $method);
         return $res;
     }
+
+    /**
+     * Узнать статус рассылки
+     *
+     * @param integer $campaign_id - Код рассылки
+     * @return void
+     */
+    public function getCampaignStatus(int $campaign_id)
+    {
+        $method = 'getCampaignStatus';
+        $data['campaign_id'] = $campaign_id;
+
+        $res = $this->send($data, $method);
+        return $res;
+    }
 }
