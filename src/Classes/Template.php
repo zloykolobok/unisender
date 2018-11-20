@@ -38,16 +38,17 @@ class Template extends Unisender
         string $subject,
         string $body,
         string $description = '',
-        string $list_id,
+        string $list_id = '',
         string $text_body = '',
-        string $segment_id,
-        string $tag,
+        string $segment_id = '',
+        string $tag = '',
         string $lang = 'ru',
-        string $message_format = 'raw_htm',
-        string $raw_body
+        string $message_format = 'raw_html',
+        string $raw_body = ''
     )
     {
         $method = 'createEmailTemplate';
+
         $data['title'] = $title;
         $data['sender_name'] = $sender_name;
         $data['sender_email'] = $sender_email;
@@ -58,17 +59,27 @@ class Template extends Unisender
             $data['description'] = $description;
         }
 
-        $data['list_id'] = $list_id;
+        if($list_id != '') {
+            $data['list_id'] = $list_id;
+        }
 
         if($text_body != ''){
             $data['text_body'] = $text_body;
         }
 
-        $data['segment_id'] = $segment_id;
-        $data['tag'] = $tag;
+        if($segment_id != ''){
+            $data['segment_id'] = $segment_id;
+        }
+
+        if($tag != ''){
+            $data['tag'] = $tag;
+        }
+
         $data['lang'] = $lang;
         $data['message_format'] = $message_format;
-        $data['raw_body'] = $raw_body;
+        if($raw_body != ''){
+            $data['raw_body'] = $raw_body;
+        }
 
         $res = $this->send($data, $method);
         return $res;
@@ -109,7 +120,7 @@ class Template extends Unisender
         string $segment_id = '',
         string $tag = '',
         string $lang = 'ru',
-        string $message_format = 'raw_htm',
+        string $message_format = 'raw_html',
         string $raw_body = ''
     )
     {
