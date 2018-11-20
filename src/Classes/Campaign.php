@@ -50,4 +50,23 @@ class Campaign extends Unisender
         $res = $this->send($data, $method);
         return $res;
     }
+
+    /**
+     * Получить отчёт по посещенным пользователями ссылкам в указанной email рассылке.
+     *
+     * @param integer $campaign_id - Идентификатор кампании
+     * @param integer $group - Группировать результаты по посещенным ссылкам.
+     * Если пользователь посетил ссылку несколько раз, в результатах это будет представлено одной записью,
+     * с указанием количества посещений в поле count.
+     * @return void
+     */
+    public function getVisitedLinks(int $campaign_id, int $group = 1)
+    {
+        $method = 'getVisitedLinks';
+        $data['campaign_id'] = $campaign_id;
+        $data['group'] = $group;
+
+        $res = $this->send($data, $method);
+        return $res;
+    }
 }
