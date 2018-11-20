@@ -122,4 +122,42 @@ class Campaign extends Unisender
         $res = $this->send($data, $method);
         return $res;
     }
+
+    /**
+     * Данный метод используется для получения списка писем
+     *
+     * @param string $format - формат вывода принимает значения html | json, по умолчанию json
+     * @param string $date_from - дата создания больше чем, формат yyyy-mm-dd hh:mm UTC
+     * @param string $date_to - дата создания меньше чем, формат yyyy-mm-dd hh:mm UTC
+     * @param integer $limit - количество  записей в ответе на один запрос,
+     * должен быть целое число в диапазоне 1 — 100 , по умолчанию 50
+     * @param integer $offset - с какой позиции начинать выборку, должен быть 0 или больше
+     * (позиция первой записи начинается с 0), по умолчанию 0
+     * @return void
+     */
+    public function getMessages(
+        string $format = 'json',
+        string $date_from = '',
+        string $date_to = '',
+        int $limit = 50,
+        int $offset = 0
+    )
+    {
+        $method = 'getMessages';
+
+        $data['format'] = $format;
+        if($date_from != ''){
+            $data['date_from'] = $date_from;
+        }
+
+        if($date_to != ''){
+            $data['date_to'] = $date_to;
+        }
+
+        $data['limit'] = $limit;
+        $data['offset'] = $offset;
+
+        $res = $this->send($data, $method);
+        return $res;
+    }
 }
