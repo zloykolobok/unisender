@@ -54,13 +54,13 @@ class Template extends Unisender
         $data['subject'] = $subject;
         $data['body'] = $body;
 
-        if($data['description'] != ''){
+        if($description != ''){
             $data['description'] = $description;
         }
 
         $data['list_id'] = $list_id;
 
-        if($data['text_body'] != ''){
+        if($text_body != ''){
             $data['text_body'] = $text_body;
         }
 
@@ -116,55 +116,55 @@ class Template extends Unisender
         $method = 'updateEmailTemplate';
         $data['template_id'] = $template_id;
 
-        if($data['title'] != ''){
+        if($title != ''){
             $data['title'] = $title;
         }
 
-        if($data['sender_name'] != ''){
+        if($sender_name != ''){
             $data['sender_name'] = $sender_name;
         }
 
-        if($data['sender_email'] != ''){
+        if($sender_email != ''){
             $data['sender_email'] = $sender_email;
         }
 
-        if($data['subject'] != ''){
+        if($subject != ''){
             $data['subject'] = $subject;
         }
 
-        if($data['body'] != ''){
+        if($body != ''){
             $data['body'] = $body;
         }
 
-        if($data['description'] != ''){
+        if($description != ''){
             $data['description'] = $description;
         }
 
-        if($data['list_id'] != ''){
+        if($list_id != ''){
             $data['list_id'] = $list_id;
         }
 
-        if($data['text_body'] != ''){
+        if($text_body != ''){
             $data['text_body'] = $text_body;
         }
 
-        if($data['segment_id'] != ''){
+        if($segment_id != ''){
             $data['segment_id'] = $segment_id;
         }
 
-        if($data['tag'] != ''){
+        if($tag != ''){
             $data['tag'] = $tag;
         }
 
-        if($data['lang'] != ''){
+        if($lang != ''){
             $data['lang'] = $lang;
         }
 
-        if($data['message_format'] != ''){
+        if($message_format != ''){
             $data['message_format'] = $message_format;
         }
 
-        if($data['raw_body'] != ''){
+        if($raw_body != ''){
             $data['raw_body'] = $raw_body;
         }
 
@@ -232,11 +232,11 @@ class Template extends Unisender
 
         $data['type'] = $type;
 
-        if($data['date_from'] != ''){
+        if($date_from != ''){
             $data['date_from'] = $date_from;
         }
 
-        if($data['date_to'] != ''){
+        if($date_to != ''){
             $data['date_to'] = $date_to;
         }
 
@@ -277,11 +277,11 @@ class Template extends Unisender
 
         $data['type'] = $type;
 
-        if($data['date_from'] != ''){
+        if($date_from != ''){
             $data['date_from'] = $date_from;
         }
 
-        if($data['date_to'] != ''){
+        if($date_to != ''){
             $data['date_to'] = $date_to;
         }
 
