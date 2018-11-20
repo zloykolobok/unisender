@@ -160,4 +160,14 @@ class Campaign extends Unisender
         $res = $this->send($data, $method);
         return $res;
     }
+
+    public function getMessage(int $id)
+    {
+        $method = 'getMessage';
+
+        $data['id'] = $id;
+
+        $res = $this->send($data, $method);
+        return $res;
+    }
 }
