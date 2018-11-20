@@ -69,4 +69,42 @@ class Campaign extends Unisender
         $res = $this->send($data, $method);
         return $res;
     }
+
+    /**
+     * Метод для получения перечня всех имеющихся рассылок.
+     *
+     * @param string $from - Дата и время старта рассылки, начиная с которой нужно выводить рассылки,
+     * в формате «ГГГГ-ММ-ДД чч:мм:сс», часовой пояс UTC.
+     * @param string $to - Дата и время старта рассылки, заканчивая которой нужно выводить рассылки,
+     * в формате «ГГГГ-ММ-ДД чч:мм:сс», часовой пояс UTC.
+     * @param integer $limit - Количество записей в ответе на один запрос должно быть целым числом
+     * в диапазоне 1 — 100 , по умолчанию стоит 50 записей.
+     * @param integer $offset - Параметр указывает, с какой позиции начинать выборку.
+     * Значение должно быть 0, или больше (позиция первой записи начинается с 0), по умолчанию 0.
+     * @return void
+     */
+    public function getCampaigns(
+        string $from = '',
+        string $to = '',
+        int $limit = 50,
+        int $offset = 0
+    )
+    {
+        $method = 'getCampaigns';
+
+        if($from != '') {
+            $data['from'] = $from;
+        }
+
+        if($to != '') {
+            $data['to'] = $to;
+        }
+
+        $data['limit'] = $limit;
+        $data['offset'] = $offset;
+
+
+        $res = $this->send($data, $method);
+        return $res;
+    }
 }
