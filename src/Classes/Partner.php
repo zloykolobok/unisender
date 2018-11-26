@@ -126,4 +126,29 @@ class Partner extends Unisender
         $res = $this->send($data, $method);
         return $res;
     }
+
+    /**
+     * Проверяет, зарегистрирован ли пользователь с заданым login или email.
+     * Предназначен для вызова только реселлерами.
+     *
+     * @param string $login - Проверяемый логин пользователя.
+     * @param string $email - Проверяемый email-адрес пользователя.
+     * @return void - json-обект с двумя полями: «login_exists» и «email_exists»,
+     * имеющим значение 1 если найден пользователь с таким логином или, соответственно, email-адресом.
+     * Если пользователь не найден, соответствующее поле принимает значение 0.
+     */
+    public function checkUserExists(string $login = '', string $email = '')
+    {
+        $method = 'register';
+        if($login != ''){
+            $data['login'] = $login;
+        }
+
+        if($email != ''){
+            $data['email'] = $email;
+        }
+
+        $res = $this->send($data, $method);
+        return $res;
+    }
 }
