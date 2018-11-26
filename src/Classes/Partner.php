@@ -167,4 +167,28 @@ class Partner extends Unisender
         $res = $this->send($data, $method);
         return $res;
     }
+
+
+    /**
+     * Метод для получения информации о пользователях прикреплённых к партнёру.
+     *
+     * @param string $registered_after - Дата и время после которой зарегистрировались пользователи
+     * в формате «ГГГГ-ММ-ДД чч:мм».
+     * @param string $registered_before - Дата и время до которой зарегистрировались пользователи
+     * в формате «ГГГГ-ММ-ДД чч:мм».
+     * @return void
+     */
+    public function getUsers(string $registered_after = '', string $registered_before = '')
+    {
+        $method = 'getUsers';
+        if($registered_after != ''){
+            $data['registered_after'] = $registered_after;
+        }
+        if($registered_before != ''){
+            $data['registered_before'] = $registered_before;
+        }
+
+        $res = $this->send($data, $method);
+        return $res;
+    }
 }
