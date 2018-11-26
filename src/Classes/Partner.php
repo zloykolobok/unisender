@@ -28,4 +28,23 @@ class Partner extends Unisender
         $res = $this->send($data, $method);
         return $res;
     }
+
+    /**
+     * Метод отправляет по адресу email письмо со ссылкой на подтверждение адреса в качестве обратного.
+     *
+     * @param string $email - E-mail адрес, который вы хотите подставлять в поле «От кого» рассылаемых писем.
+     * @param string $login - Логин пользователя, которому будет разрешено использовать обратный адрес
+     * @return void
+     */
+    public function validateSender(string $email, string $login = '')
+    {
+        $method = 'validateSender';
+        $data['email'] = $email;
+        if($login != ''){
+            $data['login'] = $login;
+        }
+
+        $res = $this->send($data, $method);
+        return $res;
+    }
 }
