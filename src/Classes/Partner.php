@@ -139,7 +139,7 @@ class Partner extends Unisender
      */
     public function checkUserExists(string $login = '', string $email = '')
     {
-        $method = 'register';
+        $method = 'checkUserExists';
         if($login != ''){
             $data['login'] = $login;
         }
@@ -147,6 +147,22 @@ class Partner extends Unisender
         if($email != ''){
             $data['email'] = $email;
         }
+
+        $res = $this->send($data, $method);
+        return $res;
+    }
+
+    /**
+     * Метод для получения информации о пользователе и состоянии его счёта.
+     *
+     * @param string $login - Логин пользователя, информацию по которому хочется получить.
+     * Игнорируется, если пользователь не имеет статуса реселлера.
+     * @return void
+     */
+    public function getUserInfo(string $login)
+    {
+        $method = 'getUserInfo';
+        $data['login'] = $login;
 
         $res = $this->send($data, $method);
         return $res;
